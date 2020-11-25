@@ -3,10 +3,14 @@ package com.eVida.Ventanas;
 //https://stackoverflow.com/questions/21375255/jpanel-positions-and-sizes-changes-according-to-screensize
 //http://www.chuidiang.org/java/layout/BorderLayout.php
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 import java.awt.BorderLayout;
+import java.awt.Color;
 
 import com.eVida.Componentes.menuSuperior;
+import com.eVida.Componentes.Paneles.panelCentral;
+import com.eVida.Componentes.Paneles.panelLateralDerecho;
+import com.eVida.Componentes.Paneles.panelLateralIzquierdo;
+import com.eVida.Componentes.Paneles.panelSur;
 import com.eVida.Componentes.Paneles.panelTitulo;
 
 public class venPrincipal {
@@ -32,9 +36,18 @@ public class venPrincipal {
             public void run() {
                 System.out.println("El hilo funciona");
                 menuSuperior menu = new menuSuperior();
+                menu.setBackground(Color.white);
 
-                JPanel pT = new panelTitulo();
-                vP.add(pT , BorderLayout.PAGE_START);
+                panelTitulo pT = new panelTitulo();
+                vP.add(pT, BorderLayout.PAGE_START);
+                panelSur pS = new panelSur();
+                vP.add(pS, BorderLayout.PAGE_END);
+                panelLateralIzquierdo pLI = new panelLateralIzquierdo();
+                vP.add(pLI, BorderLayout.LINE_START);
+                panelLateralDerecho pLD = new panelLateralDerecho();
+                vP.add(pLD, BorderLayout.LINE_END);
+                panelCentral pC = new panelCentral();
+                vP.add(pC, BorderLayout.CENTER);
 
                 vP.setJMenuBar(menu);
                 vP.setVisible(true);
@@ -42,8 +55,7 @@ public class venPrincipal {
 
         };
         hiloPrincipal.start();
-        
-        
+
     }
-    
+
 }
