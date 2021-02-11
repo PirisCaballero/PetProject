@@ -3,6 +3,8 @@ package com.eVida.Componentes.Paneles;
 import javax.swing.BorderFactory;
 
 import javax.swing.JPanel;
+
+
 import java.awt.*;
 
 public class panelCentral extends JPanel {
@@ -16,6 +18,7 @@ public class panelCentral extends JPanel {
         this.setLayout(new BorderLayout());
         this.setBackground(Color.white);
         this.setBorder(BorderFactory.createTitledBorder("Panel Central"));
+
     }
 
 }

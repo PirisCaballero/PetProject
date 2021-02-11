@@ -1,8 +1,16 @@
 package com.eVida.Componentes;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.*;
+
+import com.eVida.Ventanas.venPrincipal;
+
+import main.java.com.eVida.Ventanas.Controller;
+import main.java.com.eVida.Ventanas.venGenerica;
+import main.java.com.eVida.Ventanas.Lecturas.venPulso;
+
 import java.awt.event.*;
 
 public class menuSuperior extends JMenuBar {
@@ -43,6 +51,16 @@ public class menuSuperior extends JMenuBar {
         JMenuItem Lmovimiento = new JMenuItem("Lectura del movimiento");
         Lmovimiento.setFont(fuenteMenu2);
         lecturas.add(Lmovimiento);
+
+        ///////////////
+
+        ActionListener pulsoL = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Controller.panelSwitch("venPulso");
+            }
+        };
+        Lpulso.addActionListener(pulsoL);
+
         /* ************************* */
 
         JMenu animales = new JMenu("Animales");
