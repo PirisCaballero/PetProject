@@ -4,12 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.*;
-
 import com.eVida.Ventanas.venPrincipal;
-
-import main.java.com.eVida.Ventanas.Controller;
-import main.java.com.eVida.Ventanas.venGenerica;
-import main.java.com.eVida.Ventanas.Lecturas.venPulso;
+import com.eVida.Ventanas.Controller;
+import com.eVida.Ventanas.venGenerica;
+import com.eVida.Ventanas.Lecturas.venPulso;
 
 import java.awt.event.*;
 
@@ -32,6 +30,10 @@ public class menuSuperior extends JMenuBar {
         this.add(inicio);
         JMenuItem salir = new JMenuItem("Salir");
         salir.setFont(fuenteMenu2);
+        JMenuItem inicio2 = new JMenuItem("Inicio");
+        inicio2.setFont(fuenteMenu2);
+
+        inicio.add(inicio2);
         inicio.add(salir);
         /* ************************* */
 
@@ -89,6 +91,13 @@ public class menuSuperior extends JMenuBar {
             }
         };
         salir.addActionListener(salirL);
+
+        ActionListener inicioL = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Controller.panelSwitch("venInicio");
+            }
+        };
+        inicio2.addActionListener(inicioL);
 
     }
 

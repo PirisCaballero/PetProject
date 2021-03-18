@@ -20,6 +20,7 @@ public class panelLateralIzquierdo extends JPanel {
         this.setBorder(BorderFactory.createTitledBorder("Panel Oeste"));
         JPanel panelPrincipal = new JPanel();
         panelPrincipal.setLayout(new FlowLayout());
+        panelPrincipal.setBackground(Color.white);
 
         JLabel titulo = new JLabel();
         titulo.setText("Navegación");
