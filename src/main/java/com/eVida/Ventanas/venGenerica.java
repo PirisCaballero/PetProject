@@ -2,9 +2,13 @@ package com.eVida.Ventanas;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import com.eVida.Componentes.menuSuperior;
+
 import java.awt.Image.*;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Point;
 
 public class venGenerica extends JPanel {
 
@@ -15,12 +19,14 @@ public class venGenerica extends JPanel {
     protected Font fuenteTitulo = new Font("Times New Roman", Font.ROMAN_BASELINE, 50);
     protected Font fuenteLabels = new Font("Times New Roman", Font.ROMAN_BASELINE, 22);
     protected Font fuenteBtn = new Font("Times New Roman", Font.ROMAN_BASELINE, 20);
+    protected Font fuenteTT = new Font("Times New Roman", Font.ROMAN_BASELINE, 17);
     protected JLabel titulo;
     protected JButton btnAdelante, btnAtras;
     protected String nomTit;
-    protected static boolean inicio = false;
+    public static boolean inicio = false;
     protected JButton btnSesionIniciada;
     protected Thread actualiza;
+    protected Point mouseLocation;
 
     public venGenerica() {
         setName("venGenerica");
@@ -73,8 +79,10 @@ public class venGenerica extends JPanel {
                 while (true) {
                     if (!venGenerica.inicio) {
                         btnSesionIniciada.setText("Iniciar Sesión");
+                        menuSuperior.inicio2.setText("Inicio");
                     } else {
                         btnSesionIniciada.setText(venPrincipal.Usuario.getApodo());
+                        menuSuperior.inicio2.setText(venPrincipal.Usuario.getApodo());
                     }
                 }
             }

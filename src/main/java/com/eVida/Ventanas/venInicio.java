@@ -87,6 +87,7 @@ public class venInicio extends venGenerica {
                         // TODO
                         System.out.println("Escuchar");
                         try {
+                            // TODO
                             Cliente inicioSesion = new Cliente("1001");
                             boolean inic = inicioSesion.verificarUsuario(apodoInput.getText(),
                                     contraseniaInput.getText());
@@ -111,6 +112,13 @@ public class venInicio extends venGenerica {
                     }
                 };
                 btnInicio.addActionListener(btnInicioL);
+
+                ActionListener btnRegistroL = new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Controller.panelSwitch("venRegistro");
+                    }
+                };
+                btnRegistro.addActionListener(btnRegistroL);
             }
         };
         escuchadores.start();

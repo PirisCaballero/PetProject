@@ -19,6 +19,7 @@ public class menuSuperior extends JMenuBar {
     private static final long serialVersionUID = 1L;
     private Font fuenteMenu;
     private Font fuenteMenu2;
+    public static JMenuItem inicio2;
 
     public menuSuperior() {
 
@@ -30,10 +31,13 @@ public class menuSuperior extends JMenuBar {
         this.add(inicio);
         JMenuItem salir = new JMenuItem("Salir");
         salir.setFont(fuenteMenu2);
-        JMenuItem inicio2 = new JMenuItem("Inicio");
+        inicio2 = new JMenuItem("Inicio");
         inicio2.setFont(fuenteMenu2);
+        JMenuItem cerrarSesion = new JMenuItem("Cerrar Sesion");
+        cerrarSesion.setFont(fuenteMenu2);
 
         inicio.add(inicio2);
+        inicio.add(cerrarSesion);
         inicio.add(salir);
         /* ************************* */
 
@@ -94,10 +98,22 @@ public class menuSuperior extends JMenuBar {
 
         ActionListener inicioL = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                Controller.panelSwitch("venInicio");
+                if (!venGenerica.inicio) {
+                    Controller.panelSwitch("venInicio");
+                } else {
+                    Controller.panelSwitch("venSesionIniciada");
+                }
+
             }
         };
         inicio2.addActionListener(inicioL);
+
+        ActionListener cerrarSesionL = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Controller.cerrarSesion();
+            }
+        };
+        cerrarSesion.addActionListener(cerrarSesionL);
 
     }
 

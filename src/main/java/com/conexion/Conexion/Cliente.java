@@ -46,7 +46,28 @@ public class Cliente extends conexion {
         }
     }
 
-    public void registrarUsuario(persona p) {
+    public List<String> getRazasPerros() {
+        try {
+            salidaServidor = new DataOutputStream(sc.getOutputStream());
+            salidaServidor.writeUTF(this.cod + "-" + "razasPerros" + "\n");
+            salidaServidor.flush();
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream()));
+            String mensaje = entrada.readLine();
+            System.out.println(mensaje);
+            mensaje = mensaje.replaceAll("\\s*", "");
+            mensaje = mensaje.trim();
+            List<String> dataUsuario = Arrays.asList(mensaje.split(","));
+            return dataUsuario;
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e);
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public boolean registrarUsuario(persona p) {
         try {
             salidaServidor = new DataOutputStream(sc.getOutputStream());
             salidaServidor.writeUTF(this.cod + "-" + p.getNombre() + "," + p.getApellidos() + "," + p.getDni() + ","
@@ -55,7 +76,15 @@ public class Cliente extends conexion {
             BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream()));
             String mensaje = entrada.readLine();
             System.out.println(mensaje);
-            sc.close();
+            mensaje = mensaje.replaceAll("\\s*", "");
+            mensaje = mensaje.trim();
+            if (mensaje.equals("true")) {
+                sc.close();
+                return true;
+            } else {
+                sc.close();
+                return false;
+            }
         } catch (Exception e) {
             System.out.println(e + "cl");
             e.printStackTrace();
@@ -65,6 +94,7 @@ public class Cliente extends conexion {
                 System.out.println(e2);
                 e.printStackTrace();
             }
+            return false;
         }
     }
 
@@ -77,6 +107,7 @@ public class Cliente extends conexion {
                 salidaServidor.writeUTF(this.cod + "-" + apodo + "," + contrasenia + "\n");
                 BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream()));
                 String mensaje = entrada.readLine();
+                // Si retorna "" meter un if/else
                 mensaje = mensaje.replaceAll("\\s*", "");
                 mensaje = mensaje.trim();
                 System.out.println(mensaje);
