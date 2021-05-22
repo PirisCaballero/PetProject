@@ -34,7 +34,7 @@ public class panelSesionIniciada extends venGenerica {
 
     @Override
     public void setComponentes() {
-        componentes = new Thread() {
+        actualiza = new Thread() {
             @Override
             public void run() {
                 UIManager.put("ToolTip.background", Color.white);
@@ -99,12 +99,19 @@ public class panelSesionIniciada extends venGenerica {
                 };
                 btnAnimales.addActionListener(btnAnimalesL);
 
+                ActionListener btnEstadisticasL = new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Controller.panelSwitch("venUsuario");
+                    }
+                };
+                btnEstadisticas.addActionListener(btnEstadisticasL);
+
                 add(contenedor);
                 contenedor.repaint();
                 repaint();
             }
         };
-        componentes.start();
+        actualiza.start();
     }
 
 }

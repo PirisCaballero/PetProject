@@ -8,6 +8,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.swing.JPanel;
 import javax.swing.plaf.synth.SynthScrollPaneUI;
@@ -19,7 +20,7 @@ import com.eVida.Ventanas.Lecturas.venPulso;
 
 public class Controller {
 
-    private static HashMap<String, JPanel> arrayPaneles;
+    private static HashMap<String, venGenerica> arrayPaneles;
     private static venPulso vPl;
     private static venInicio vI;
     private static venRegistro vR;
@@ -30,9 +31,11 @@ public class Controller {
     private static FileReader fr = null;
     private static BufferedReader br = null;
     private static venMascotas vM;
+    private static venUsuario vU;
+    private static venAgregarMascota vAM;
 
     public static void init() {
-        arrayPaneles = new HashMap<String, JPanel>();
+        arrayPaneles = new HashMap<String, venGenerica>();
         vPl = new venPulso();
         vI = new venInicio();
         pSI = new panelSesionIniciada();
@@ -46,35 +49,71 @@ public class Controller {
         arrayPaneles.put(vM.getName(), vM);
         if (Controller.verificarSesionIniciada()) {
             Controller.panelSwitch("venSesionIniciada");
+            vU = new venUsuario(venPrincipal.Usuario);
+            arrayPaneles.put(vU.getName(), vU);
+            vAM = new venAgregarMascota(venPrincipal.Usuario);
+            arrayPaneles.put(vAM.getName(), vAM);
         } else {
             Controller.panelSwitch("venInicio");
         }
-        Thread actualiza = new Thread() {
-            @Override
-            public void run() {
-                while (true) {
-                    int i = venPrincipal.getPanelCentral().getComponentCount();
-                    if (i == 1) {
-                        venPrincipal.getPanelCentral().getComponent(0).repaint();
-                    }
-                }
-            }
-        };
-        actualiza.start();
     }
 
     public static void panelSwitch(String panelName) {
         if (panelName.equals("venPulso")) {
             System.out.println(venPrincipal.addComponent(arrayPaneles.get(panelName)));
+            activarPaneles(panelName);
+            desactivarPaneles(panelName);
         } else if (panelName.equals("venInicio")) {
             System.out.println(venPrincipal.addComponent(arrayPaneles.get(panelName)));
+            activarPaneles(panelName);
+            desactivarPaneles(panelName);
         } else if (panelName.equals("venSesionIniciada")) {
             System.out.println(venPrincipal.addComponent(arrayPaneles.get(panelName)));
+            activarPaneles(panelName);
+            desactivarPaneles(panelName);
         } else if (panelName.equals("venRegistro")) {
             System.out.println(venPrincipal.addComponent(arrayPaneles.get(panelName)));
+            activarPaneles(panelName);
+            desactivarPaneles(panelName);
         } else if (panelName.equals("venMascotas")) {
             System.out.println(venPrincipal.addComponent(arrayPaneles.get(panelName)));
+            activarPaneles(panelName);
+            desactivarPaneles(panelName);
+        } else if (panelName.equals("venUsuario")) {
+            if (!arrayPaneles.containsKey("venUsuario")) {
+                vU = new venUsuario(venPrincipal.Usuario);
+                arrayPaneles.put(vU.getName(), vU);
+            }
+            System.out.println(venPrincipal.addComponent(arrayPaneles.get(panelName)));
+            activarPaneles(panelName);
+            desactivarPaneles(panelName);
+        } else if (panelName.equals("venAgregarMascota")) {
+            if (!arrayPaneles.containsKey("venAgregarMascota")) {
+                vAM = new venAgregarMascota(venPrincipal.Usuario);
+                arrayPaneles.put(vAM.getName(), vAM);
+            }
+            System.out.println(venPrincipal.addComponent(arrayPaneles.get(panelName)));
+            activarPaneles(panelName);
+            desactivarPaneles(panelName);
         }
+    }
+
+    private static void desactivarPaneles(String nombre) {
+        // for (Map.Entry<String, venGenerica> entry : arrayPaneles.entrySet()) {
+        // if (!entry.getKey().equals(nombre)) {
+        // entry.getValue().setEnabled(false);
+        // }
+        // System.out.println(entry.getValue().getName() + "---" +
+        // entry.getValue().isEnabled());
+        // }
+    }
+
+    private static void activarPaneles(String nombre) {
+        // for (Map.Entry<String, venGenerica> entry : arrayPaneles.entrySet()) {
+        // if (entry.getKey().equals(nombre)) {
+        // entry.getValue().setEnabled(true);
+        // }
+        // }
     }
 
     public static boolean guardarSesion(String apodo, String contrasenia) {

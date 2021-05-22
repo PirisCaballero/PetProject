@@ -9,6 +9,7 @@ import java.awt.Image.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Point;
+import java.awt.event.*;
 
 public class venGenerica extends JPanel {
 
@@ -33,7 +34,6 @@ public class venGenerica extends JPanel {
         setLayout(null);
         setBounds(0, 0, venPrincipal.getPanelCentral().getWidth(), venPrincipal.getPanelCentral().getHeight());
         setBackground(Color.white);
-
     }
 
     public void setTitulo(String nombreTitulo) {
@@ -68,6 +68,13 @@ public class venGenerica extends JPanel {
         btnAtras.setFocusable(false);
         btnAtras.setBorder(null);
 
+        ActionListener btnSesionIniciadaL = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Controller.panelSwitch("venSesionIniciada");
+            }
+        };
+        btnSesionIniciada.addActionListener(btnSesionIniciadaL);
+
         add(btnAdelante);
         add(btnSesionIniciada);
         add(btnAtras);
@@ -91,6 +98,10 @@ public class venGenerica extends JPanel {
     }
 
     public void setComponentes() {
+    }
+
+    public static JPanel getPanel() {
+        return null;
     }
 
 }

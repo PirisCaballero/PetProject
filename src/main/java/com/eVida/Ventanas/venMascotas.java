@@ -2,10 +2,14 @@ package com.eVida.Ventanas;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.event.*;
+import com.conexion.Conexion.conexion;
+
+import java.awt.GridLayout;
 
 public class venMascotas extends venGenerica {
 
-    protected JPanel contenedor;
+    protected static JPanel contenedor;
     protected JButton btnVerMascotas, btnAgregarMascotas;
     protected JLabel lbl1, lbl2;
     protected Thread hilo;
@@ -22,7 +26,7 @@ public class venMascotas extends venGenerica {
 
     @Override
     public void setComponentes() {
-        hilo = new Thread() {
+        actualiza = new Thread() {
             @Override
             public void run() {
                 setTitulo("Mascotas");
@@ -33,34 +37,40 @@ public class venMascotas extends venGenerica {
                 contenedor.setBounds(0, titulo.getHeight() + btnAdelante.getHeight(),
                         venPrincipal.getPanelCentral().getWidth(),
                         (venPrincipal.getPanelCentral().getHeight() - titulo.getHeight() - btnAdelante.getHeight()));
-                contenedor.setLayout(new GridLayout(2, 2, 20, 20));
+                // contenedor.setLayout(new GridLayout(2, 2, 20, 20));
+                contenedor.setLayout(null);
                 contenedor.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-                contenedor.setBackground(Color.red);
+                // contenedor.setBackground(Color.white);
 
                 Icon iconAddPet = new ImageIcon("src/main/java/com/eVida/Recursos/img/addPet.png");
                 btnAgregarMascotas = new JButton(iconAddPet);
+                btnAgregarMascotas.setBackground(Color.white);
+                btnAgregarMascotas.setBounds((venPrincipal.getPanelCentral().getWidth() / 2) - 350, 150, 200, 200);
                 btnAgregarMascotas.setToolTipText("Añadir mascota");
                 btnAgregarMascotas.setFocusable(false);
-                contenedor.add(btnAgregarMascotas);
 
                 Icon iconPet = new ImageIcon("src/main/java/com/eVida/Recursos/img/petIcon.png");
                 btnVerMascotas = new JButton(iconPet);
+                btnVerMascotas.setBounds((venPrincipal.getPanelCentral().getWidth() / 2) + 150, 150, 200, 200);
+                btnVerMascotas.setBackground(Color.white);
                 btnVerMascotas.setToolTipText("Mis mascotas");
                 btnVerMascotas.setFocusable(false);
+
+                ActionListener btnAgregarMascotasL = new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Controller.panelSwitch("venAgregarMascota");
+                    }
+
+                };
+                btnAgregarMascotas.addActionListener(btnAgregarMascotasL);
+
+                contenedor.add(btnAgregarMascotas);
                 contenedor.add(btnVerMascotas);
-
-                lbl1 = new JLabel();
-                // contenedor.add(lbl1);
-
-                lbl2 = new JLabel();
-                // contenedor.add(lbl2);
-
                 add(contenedor);
                 contenedor.repaint();
-                repaint();
             }
         };
-        hilo.start();
+        actualiza.start();
     }
 
 }

@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.List;
-
+import com.conexion.Recursos.*;
 import com.conexion.Recursos.persona;
 
 public class Cliente extends conexion {
@@ -53,6 +53,26 @@ public class Cliente extends conexion {
             salidaServidor.flush();
             BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream()));
             String mensaje = entrada.readLine();
+            // System.out.println(mensaje);
+            mensaje = mensaje.replaceAll("\\s*", "");
+            mensaje = mensaje.trim();
+            List<String> dataUsuario = Arrays.asList(mensaje.split(","));
+            return dataUsuario;
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<String> getTiposDeAnimales() {
+        try {
+            salidaServidor = new DataOutputStream(sc.getOutputStream());
+            salidaServidor.writeUTF(this.cod + "-" + "tiposDeAnimales" + "\n");
+            salidaServidor.flush();
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream()));
+            String mensaje = entrada.readLine();
             System.out.println(mensaje);
             mensaje = mensaje.replaceAll("\\s*", "");
             mensaje = mensaje.trim();
@@ -62,9 +82,69 @@ public class Cliente extends conexion {
             // TODO: handle exception
             System.out.println(e);
             e.printStackTrace();
+            return null;
+        }
+    }
+
+    public List<String> getTiposDeSangreAnimales() {
+        try {
+            salidaServidor = new DataOutputStream(sc.getOutputStream());
+            salidaServidor.writeUTF(this.cod + "-" + "tiposDeSangreAnimales" + "\n");
+            salidaServidor.flush();
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream()));
+            String mensaje = entrada.readLine();
+            System.out.println(mensaje);
+            mensaje = mensaje.replaceAll("\\s*", "");
+            mensaje = mensaje.trim();
+            List<String> dataUsuario = Arrays.asList(mensaje.split(","));
+            return dataUsuario;
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String getCellId(String tabla, String valor) {
+        try {
+            salidaServidor = new DataOutputStream(sc.getOutputStream());
+            salidaServidor.writeUTF(this.cod + "-" + tabla + "," + valor + "\n");
+            salidaServidor.flush();
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream()));
+            String mensaje = entrada.readLine();
+            System.out.println(mensaje);
+            mensaje = mensaje.replaceAll("\\s*", "");
+            mensaje = mensaje.trim();
+            String dataUsuario = mensaje;
+            return dataUsuario;
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public String agregarAnimal(animal a) {
+        try {
+            salidaServidor = new DataOutputStream(sc.getOutputStream());
+            salidaServidor.writeUTF(this.cod + "-" + a.toString() + "\n");
+            salidaServidor.flush();
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream()));
+            String mensaje = entrada.readLine();
+            System.out.println(mensaje);
+            mensaje = mensaje.replaceAll("\\s*", "");
+            mensaje = mensaje.trim();
+            String dataUsuario = mensaje;
+            return dataUsuario;
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e);
+            e.printStackTrace();
+            return null;
         }
 
-        return null;
     }
 
     public boolean registrarUsuario(persona p) {
