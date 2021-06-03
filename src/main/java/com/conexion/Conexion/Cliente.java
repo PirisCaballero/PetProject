@@ -5,6 +5,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import com.conexion.Recursos.*;
@@ -215,6 +216,58 @@ public class Cliente extends conexion {
         } else {
             return null;
         }
+    }
+
+    public String getAnimales(int idUsuario) {
+        try {
+            salidaServidor = new DataOutputStream(sc.getOutputStream());
+            salidaServidor.writeUTF(this.cod + "-" + idUsuario + "\n");
+            BufferedReader entrada = new BufferedReader(
+                    new InputStreamReader(sc.getInputStream(), StandardCharsets.UTF_8));
+            String mensaje = entrada.readLine();
+            mensaje = mensaje.replaceAll("\\s*", "");
+            mensaje = mensaje.trim();
+            mensaje = mensaje.substring(1);
+            // System.out.println(mensaje);
+            return mensaje;
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public animal getAnimal(String id) {
+        try {
+            salidaServidor = new DataOutputStream(sc.getOutputStream());
+            salidaServidor.writeUTF(this.cod + "-" + id + "\n");
+            // salidaServidor.writeChars(this.cod + "-" + id + "\n");
+            BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream(), "UTF-8"));
+            String mensaje = entrada.readLine();
+            mensaje = mensaje.replaceAll("\\s*", "");
+            mensaje = mensaje.trim();
+            mensaje = mensaje.substring(1);
+            System.out.println(mensaje);
+            animal a = new animal();
+            List<String> animales;
+            animales = Arrays.asList(mensaje.split(","));
+            a.setIdAnimal(animales.get(0));
+            a.setApodo(animales.get(1));
+            a.setTipo(animales.get(2));
+            a.setRaza(animales.get(3));
+            a.setPeso(animales.get(4));
+            a.setTipoSangre(animales.get(5));
+            a.setFechaNacimiento(animales.get(6));
+            a.setIdUsuario(Integer.parseInt(animales.get(7)));
+            a.setFechaFueAgregado(animales.get(8));
+
+            return a;
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
 }

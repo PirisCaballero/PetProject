@@ -15,11 +15,11 @@ public class venInicio extends venGenerica {
      * PetProject 2021
      */
     private static final long serialVersionUID = 1L;
-    public JPanel contenedor;
     public JLabel apodo, contrasenia;
     public JTextField apodoInput;
     public JPasswordField contraseniaInput;
     public JButton btnInicio, btnRegistro;
+    public JScrollPane contenedor = new JScrollPane();
 
     public venInicio() {
         super();
@@ -29,12 +29,12 @@ public class venInicio extends venGenerica {
     private void init() {
         setName("venInicio");
         setComponentes();
+        System.out.println(contenedor.getName());
     }
 
     @Override
     public void setComponentes() {
         setTitulo("Bienvenido a Pet Project");
-        contenedor = new JPanel();
         contenedor.setBounds(0, this.titulo.getHeight(), venPrincipal.getPanelCentral().getWidth(),
                 (venPrincipal.getPanelCentral().getHeight() - this.titulo.getHeight()));
 
@@ -104,6 +104,7 @@ public class venInicio extends venGenerica {
                                 venPrincipal.Usuario = p;
                                 venGenerica.inicio = true;
                                 Controller.panelSwitch("venSesionIniciada");
+                                Controller.setData();
                             }
                         } catch (IOException io) {
                             System.out.println(io);
@@ -125,6 +126,12 @@ public class venInicio extends venGenerica {
 
         add(contenedor);
         repaint();
+    }
+
+    @Override
+    public void reSet() {
+        apodoInput.setText("");
+        contraseniaInput.setText("");
     }
 
 }

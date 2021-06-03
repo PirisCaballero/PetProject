@@ -7,6 +7,7 @@ import com.eVida.Componentes.menuSuperior;
 
 import java.awt.Image.*;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.*;
@@ -21,13 +22,17 @@ public class venGenerica extends JPanel {
     protected Font fuenteLabels = new Font("Times New Roman", Font.ROMAN_BASELINE, 22);
     protected Font fuenteBtn = new Font("Times New Roman", Font.ROMAN_BASELINE, 20);
     protected Font fuenteTT = new Font("Times New Roman", Font.ROMAN_BASELINE, 17);
+    protected Font fuenteLabels2 = new Font("Times New Roman", Font.ROMAN_BASELINE, 19);
     protected JLabel titulo;
     protected JButton btnAdelante, btnAtras;
     protected String nomTit;
     public static boolean inicio = false;
     protected JButton btnSesionIniciada;
     protected Thread actualiza;
+    protected JpanelC contenedor2;
+    protected JScrollPane scroll;
     protected Point mouseLocation;
+    protected JButton btnSalir;
 
     public venGenerica() {
         setName("venGenerica");
@@ -37,6 +42,26 @@ public class venGenerica extends JPanel {
     }
 
     public void setTitulo(String nombreTitulo) {
+
+        contenedor2 = new JpanelC();
+                contenedor2.setBounds(0, 0,
+                        venPrincipal.getPanelCentral().getWidth(),
+                        venPrincipal.getPanelCentral().getHeight()+1000);
+                contenedor2.setLayout(null);
+                contenedor2.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+                contenedor2.setBackground(Color.white);
+
+                Color col = Color.decode("#1660a9");
+                btnSalir = new JButton("Salir");
+                btnSalir.setBackground(col);
+                btnSalir.setForeground(Color.white);
+                btnSalir.setBounds(venPrincipal.getPanelCentral().getWidth()-400 , 700 , 100 , 40);
+                btnSalir.setFocusable(false);
+                btnSalir.setToolTipText("Salir");
+                //btnSalir.setBorder(new Border(10));
+                contenedor2.add(btnSalir);
+
+
         nomTit = nombreTitulo;
         titulo = new JLabel(nomTit);
         titulo.setBounds(0, 64, venPrincipal.getPanelCentral().getWidth(), 150);
@@ -53,6 +78,7 @@ public class venGenerica extends JPanel {
         btnSesionIniciada.setFocusable(false);
         btnSesionIniciada.setFont(fuenteBtn);
         btnSesionIniciada.setBorder(null);
+        btnSesionIniciada.setVisible(false);
 
         Icon icon = new ImageIcon("src/main/java/com/eVida/Recursos/img/flechaDerecha.png");
         btnAdelante = new JButton(icon);
@@ -68,33 +94,9 @@ public class venGenerica extends JPanel {
         btnAtras.setFocusable(false);
         btnAtras.setBorder(null);
 
-        ActionListener btnSesionIniciadaL = new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Controller.panelSwitch("venSesionIniciada");
-            }
-        };
-        btnSesionIniciada.addActionListener(btnSesionIniciadaL);
-
-        add(btnAdelante);
         add(btnSesionIniciada);
-        add(btnAtras);
-        add(titulo);
+        contenedor2.repaint();
         repaint();
-        actualiza = new Thread() {
-            @Override
-            public void run() {
-                while (true) {
-                    if (!venGenerica.inicio) {
-                        btnSesionIniciada.setText("Iniciar Sesión");
-                        menuSuperior.inicio2.setText("Inicio");
-                    } else {
-                        btnSesionIniciada.setText(venPrincipal.Usuario.getApodo());
-                        menuSuperior.inicio2.setText(venPrincipal.Usuario.getApodo());
-                    }
-                }
-            }
-        };
-        actualiza.start();
     }
 
     public void setComponentes() {
@@ -102,6 +104,14 @@ public class venGenerica extends JPanel {
 
     public static JPanel getPanel() {
         return null;
+    }
+
+    public void reSet() {
+
+    }
+
+    public void setData() {
+
     }
 
 }

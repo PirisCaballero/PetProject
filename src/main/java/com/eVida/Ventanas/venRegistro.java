@@ -16,7 +16,7 @@ public class venRegistro extends venGenerica {
     private JLabel apodo, nombre, apellidos, correo, dni, contrasenia;
     private JTextField apodoT, nombreT, apellidosT, correoT, dniT;
     private JPasswordField contraseniaT;
-    private JPanel contenedor;
+    private JPanel contenedor = new JPanel();
     private JButton btnRegistro;
 
     public venRegistro() {

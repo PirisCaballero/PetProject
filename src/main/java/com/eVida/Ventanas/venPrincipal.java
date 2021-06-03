@@ -1,5 +1,6 @@
 package com.eVida.Ventanas;
 
+import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -7,9 +8,11 @@ import javax.swing.JComponent;
 //http://www.chuidiang.org/java/layout/BorderLayout.php
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 
 import com.conexion.Recursos.persona;
 import com.eVida.Componentes.menuSuperior;
@@ -54,10 +57,6 @@ public class venPrincipal {
                 vP.add(pT, BorderLayout.PAGE_START);
                 panelSur pS = new panelSur();
                 vP.add(pS, BorderLayout.PAGE_END);
-                panelLateralIzquierdo pLI = new panelLateralIzquierdo();
-                vP.add(pLI, BorderLayout.LINE_START);
-                panelLateralDerecho pLD = new panelLateralDerecho();
-                vP.add(pLD, BorderLayout.LINE_END);
                 pC = new panelCentral();
                 pC.setLayout(null);
                 vP.add(pC, BorderLayout.CENTER);
@@ -86,7 +85,7 @@ public class venPrincipal {
         pC.removeAll();
         try {
             pC.add(c);
-            pC.repaint();
+            pC.getComponent(0).repaint();
             return true;
         } catch (Exception e) {
             return false;

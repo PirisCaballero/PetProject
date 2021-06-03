@@ -1,5 +1,7 @@
 package com.eVida.Ventanas.Lecturas;
 
+import javax.swing.JPanel;
+
 import com.eVida.Ventanas.venGenerica;
 
 public class venPulso extends venGenerica {
@@ -8,6 +10,7 @@ public class venPulso extends venGenerica {
      * Pet Project
      */
     private static final long serialVersionUID = 1L;
+    protected JPanel contenedor = new JPanel();
 
     public venPulso() {
         super();
@@ -16,7 +19,7 @@ public class venPulso extends venGenerica {
 
     private void init() {
         setName("venPulso");
-        setTitulo("Pulso Cardiaco");
+        setTitulo("Pulso Cardiaco" );
     }
 
 }

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ventanaEmergente1",
+            "request": "launch",
+            "mainClass": "com.eVida.Ventanas.ventanaEmergente1",
+            "projectName": "com.eVida.PetProject"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"

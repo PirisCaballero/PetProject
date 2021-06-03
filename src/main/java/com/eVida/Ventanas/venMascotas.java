@@ -9,7 +9,7 @@ import java.awt.GridLayout;
 
 public class venMascotas extends venGenerica {
 
-    protected static JPanel contenedor;
+    protected static JPanel contenedor = new JPanel();
     protected JButton btnVerMascotas, btnAgregarMascotas;
     protected JLabel lbl1, lbl2;
     protected Thread hilo;
@@ -63,6 +63,14 @@ public class venMascotas extends venGenerica {
 
                 };
                 btnAgregarMascotas.addActionListener(btnAgregarMascotasL);
+
+                ActionListener btnVerMascotasL = new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        Controller.panelSwitch("venVerMascotas");
+                    }
+
+                };
+                btnVerMascotas.addActionListener(btnVerMascotasL);
 
                 contenedor.add(btnAgregarMascotas);
                 contenedor.add(btnVerMascotas);

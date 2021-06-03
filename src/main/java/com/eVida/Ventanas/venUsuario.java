@@ -9,7 +9,7 @@ import java.awt.*;
 
 public class venUsuario extends venGenerica {
     private persona user;
-    protected JPanel contenedor;
+    protected JPanel contenedor = new JPanel();
     private JLabel apodo, nombre, apellidos, correo, dni, contrasenia;
     private JTextField apodoT, nombreT, apellidosT, correoT, dniT;
     private JPasswordField contraseniaT;
@@ -119,6 +119,26 @@ public class venUsuario extends venGenerica {
 
     public void setUsuario(persona u) {
         this.user = u;
+    }
+
+    @Override
+    public void reSet() {
+        apodoT.setText("");
+        nombreT.setText("");
+        apellidosT.setText("");
+        correoT.setText("");
+        dniT.setText("");
+        contraseniaT.setText("");
+    }
+
+    @Override
+    public void setData() {
+        apodoT.setText(venPrincipal.Usuario.getApodo());
+        nombreT.setText(venPrincipal.Usuario.getNombre());
+        apellidosT.setText(venPrincipal.Usuario.getApellidos());
+        correoT.setText(venPrincipal.Usuario.getCorreo());
+        dniT.setText(venPrincipal.Usuario.getDni());
+        contraseniaT.setText(venPrincipal.Usuario.getContrasenia());
     }
 
 }

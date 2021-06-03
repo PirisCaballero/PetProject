@@ -14,7 +14,7 @@ import com.conexion.Recursos.persona;
 public class venAgregarMascota extends venGenerica {
 
     persona user;
-    protected JPanel contenedor;
+    protected JPanel contenedor = new JPanel();
     protected JLabel tipoAnimal, razaAnimal, apodo, peso, tipoSangre, fechaNacimiento;
     protected JTextField apodoT, pesoT;
     protected JTextField DD, MM, YYYY;

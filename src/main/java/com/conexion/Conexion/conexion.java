@@ -9,7 +9,7 @@ import java.net.Socket;
 public class conexion {
 
     // private final String HOST = "35.176.13.206";
-    private final String HOST = "83.213.207.43";
+    private final String HOST = "92.176.106.53";
     private final int PUERTO = 3333;
     protected String mensajeServidor;
     protected String mensajeCliente;
