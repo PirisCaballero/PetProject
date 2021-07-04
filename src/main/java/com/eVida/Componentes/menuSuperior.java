@@ -3,13 +3,17 @@ package com.eVida.Componentes;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import com.eVida.Ventanas.venPrincipal;
 import com.eVida.Ventanas.Controller;
 import com.eVida.Ventanas.venGenerica;
-import com.eVida.Ventanas.Lecturas.venPulso;
+import com.eVida.Ventanas.Lecturas.venGraficas;
 
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 
 public class menuSuperior extends JMenuBar {
 
@@ -23,6 +27,10 @@ public class menuSuperior extends JMenuBar {
 
     public menuSuperior() {
 
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setPreferredSize(new Dimension((int)screenSize.getWidth(),50));
+        setBorder(BorderFactory.createEmptyBorder());
+
         fuenteMenu = new Font("Times New Roman", Font.PLAIN, 17);
         fuenteMenu2 = new Font("Times New Roman ", Font.PLAIN, 14);
         JMenu inicio = new JMenu("Inicio");
@@ -33,6 +41,7 @@ public class menuSuperior extends JMenuBar {
         salir.setFont(fuenteMenu2);
         inicio2 = new JMenuItem("Inicio");
         inicio2.setFont(fuenteMenu2);
+        inicio.setForeground(Color.white);
         JMenuItem cerrarSesion = new JMenuItem("Cerrar Sesion");
         cerrarSesion.setFont(fuenteMenu2);
 
@@ -43,6 +52,7 @@ public class menuSuperior extends JMenuBar {
 
         JMenu lecturas = new JMenu("Lecturas");
         lecturas.setBackground(Color.white);
+        lecturas.setForeground(Color.white);
         lecturas.setFont(fuenteMenu);
         this.add(lecturas);
         JMenuItem Lsensor = new JMenuItem("Lectura del sensor");
@@ -72,6 +82,7 @@ public class menuSuperior extends JMenuBar {
         JMenu animales = new JMenu("Animales");
         animales.setBackground(Color.white);
         animales.setFont(fuenteMenu);
+        animales.setForeground(Color.white);
         this.add(animales);
         JMenuItem Aagregar = new JMenuItem("Agregar animal");
         Aagregar.setFont(fuenteMenu2);
@@ -86,6 +97,7 @@ public class menuSuperior extends JMenuBar {
 
         JMenu quienesSomos = new JMenu("Quienes somos");
         quienesSomos.setFont(fuenteMenu);
+        quienesSomos.setForeground(Color.white);
         this.add(quienesSomos);
         /* ************************* */
 
@@ -116,5 +128,17 @@ public class menuSuperior extends JMenuBar {
         cerrarSesion.addActionListener(cerrarSesionL);
 
     }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        try {
+            Image img = ImageIO.read(new File("src/main/java/com/eVida/Recursos/img/bgiNav2.png"));
+            g.drawImage(img , 0, 0, null);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        repaint();
+    }
 
 }
+

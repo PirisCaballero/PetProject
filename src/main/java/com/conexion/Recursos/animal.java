@@ -2,8 +2,9 @@ package com.conexion.Recursos;
 
 public class animal extends serVivo {
 
-	protected String apodo, tipo, raza, peso, tipoSangre, fechaNacimiento;
+	protected String apodo, tipo, raza, peso, tipoSangre, fechaNacimiento, fechaFueAgregado;
 	protected int idUsuario;
+	protected String idAnimal;
 
 	public animal() {
 	}
@@ -17,6 +18,22 @@ public class animal extends serVivo {
 		this.tipoSangre = tipSan;
 		this.fechaNacimiento = fechNac;
 		this.idUsuario = idUsu;
+	}
+
+	public String getFechaFueAgregado() {
+		return fechaFueAgregado;
+	}
+
+	public void setFechaFueAgregado(String fechaFueAgregado) {
+		this.fechaFueAgregado = fechaFueAgregado;
+	}
+
+	public String getIdAnimal() {
+		return idAnimal;
+	}
+
+	public void setIdAnimal(String idAnimal) {
+		this.idAnimal = idAnimal;
 	}
 
 	public int getIdUsuario() {

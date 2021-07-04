@@ -4,23 +4,32 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JToolTip;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import java.awt.event.*;
 import java.awt.Color;
+import java.awt.Toolkit;
+import java.awt.Image.*;
 import java.awt.GridLayout;
-
+import java.awt.Graphics;
 import com.eVida.Ventanas.Controller;
+import com.eVida.Ventanas.JpanelC;
 import com.eVida.Ventanas.venGenerica;
 import com.eVida.Ventanas.venPrincipal;
+
+import javax.swing.border.Border;
+import javax.swing.border.Border.*;
 
 public class panelSesionIniciada extends venGenerica {
 
     protected Thread componentes;
     protected JButton btnConfiguracion, btnAnimales, btnEstadisticas, btnSalir;
-    protected JPanel contenedor;
+    protected JLabel opcionesUsuario;
 
     public panelSesionIniciada() {
         super();
@@ -41,56 +50,36 @@ public class panelSesionIniciada extends venGenerica {
                 UIManager.put("ToolTip.font", fuenteTT);
 
                 setTitulo("Pet Project");
-                contenedor = new JPanel();
-                contenedor.setBounds(0, titulo.getHeight() + btnAdelante.getHeight(),
-                        venPrincipal.getPanelCentral().getWidth(),
-                        (venPrincipal.getPanelCentral().getHeight() - titulo.getHeight() - btnAdelante.getHeight()));
-                contenedor.setLayout(new GridLayout(2, 2, 20, 20));
-                contenedor.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+
+                opcionesUsuario = new JLabel("Opciones de usuario");
+                opcionesUsuario.setBounds((venPrincipal.getPanelCentral().getWidth()/2) -100 , 100 , 200 , 50);
+                opcionesUsuario.setFont(fuenteLabels);
+                opcionesUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+                contenedor2.add(opcionesUsuario);
 
                 Icon iconConfig = new ImageIcon("src/main/java/com/eVida/Recursos/img/configIcon.png");
                 btnConfiguracion = new JButton(iconConfig);
-                btnConfiguracion.setBackground(Color.white);
+                btnConfiguracion.setBounds(475 , 200 , 250 , 250);
+                btnConfiguracion.setBackground(new Color(0,0,0,0));
                 btnConfiguracion.setFocusable(false);
                 btnConfiguracion.setToolTipText("Configuracion");
-                contenedor.add(btnConfiguracion);
+                contenedor2.add(btnConfiguracion);
 
                 Icon iconPet = new ImageIcon("src/main/java/com/eVida/Recursos/img/petIcon.png");
                 btnAnimales = new JButton(iconPet);
+                btnAnimales.setBounds(750 , 200 , 250 , 250);
                 btnAnimales.setBackground(Color.white);
                 btnAnimales.setFocusable(false);
                 btnAnimales.setToolTipText("Mascotas");
-                contenedor.add(btnAnimales);
+                contenedor2.add(btnAnimales);
 
                 Icon iconUser = new ImageIcon("src/main/java/com/eVida/Recursos/img/userIcon.png");
                 btnEstadisticas = new JButton(iconUser);
+                btnEstadisticas.setBounds(1025 , 200 , 250 , 250);
                 btnEstadisticas.setBackground(Color.white);
                 btnEstadisticas.setFocusable(false);
                 btnEstadisticas.setToolTipText("Usuario");
-                contenedor.add(btnEstadisticas);
-
-                Icon iconExit = new ImageIcon("src/main/java/com/eVida/Recursos/img/exitIcon.png");
-                btnSalir = new JButton(iconExit);
-                btnSalir.setBackground(Color.white);
-                btnSalir.setFocusable(false);
-                btnSalir.setToolTipText("Salir");
-                contenedor.add(btnSalir);
-
-                ActionListener btnSalirL = new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        String[] opciones = { "Cerra sesion y salir", "Salir sin cerrar sesion", "Cancelar" };
-                        UIManager.put("Button.background", Color.white);
-                        int i = JOptionPane.showOptionDialog(null, "¿Como desea salir?", "Salir",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
-                        if (i == 0) {
-                            Controller.cerrarSesion();
-                            System.exit(0);
-                        } else if (i == 1) {
-                            System.exit(0);
-                        }
-                    }
-                };
-                btnSalir.addActionListener(btnSalirL);
+                contenedor2.add(btnEstadisticas);
 
                 ActionListener btnAnimalesL = new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -98,7 +87,6 @@ public class panelSesionIniciada extends venGenerica {
                     }
                 };
                 btnAnimales.addActionListener(btnAnimalesL);
-
                 ActionListener btnEstadisticasL = new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         Controller.panelSwitch("venUsuario");
@@ -106,8 +94,8 @@ public class panelSesionIniciada extends venGenerica {
                 };
                 btnEstadisticas.addActionListener(btnEstadisticasL);
 
-                add(contenedor);
-                contenedor.repaint();
+                contenedor2.repaint();
+                add(contenedor2);
                 repaint();
             }
         };

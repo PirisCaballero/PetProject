@@ -9,7 +9,6 @@ import java.awt.*;
 
 public class venUsuario extends venGenerica {
     private persona user;
-    protected JPanel contenedor;
     private JLabel apodo, nombre, apellidos, correo, dni, contrasenia;
     private JTextField apodoT, nombreT, apellidosT, correoT, dniT;
     private JPasswordField contraseniaT;
@@ -34,83 +33,75 @@ public class venUsuario extends venGenerica {
                 UIManager.put("ToolTip.background", Color.white);
                 UIManager.put("ToolTip.font", fuenteTT);
 
-                contenedor = new JPanel();
-                contenedor.setBounds(0, titulo.getHeight() + btnAdelante.getHeight(),
-                        venPrincipal.getPanelCentral().getWidth(),
-                        (venPrincipal.getPanelCentral().getHeight() - titulo.getHeight() - btnAdelante.getHeight()));
-                // contenedor.setLayout(new GridLayout(2, 2, 20, 20));
-                contenedor.setLayout(null);
-                contenedor.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-                // contenedor.setBackground(Color.pink);
 
                 apodo = new JLabel("Apodo");
-                apodo.setBounds((contenedor.getWidth() / 2) - 300, 100, 250, 50);
+                apodo.setBounds((contenedor2.getWidth() / 2) - 300, 100, 250, 50);
                 apodo.setFont(fuenteLabels);
                 // apodo.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(apodo);
+                contenedor2.add(apodo);
                 apodoT = new JTextField(user.getApodo());
-                apodoT.setBounds((contenedor.getWidth() / 2) + 50, 100, 350, 50);
+                apodoT.setBounds((contenedor2.getWidth() / 2) + 50, 100, 350, 50);
                 apodoT.setFont(fuenteLabels);
                 apodoT.setEnabled(false);
-                contenedor.add(apodoT);
+                contenedor2.add(apodoT);
 
                 nombre = new JLabel("Nombre");
-                nombre.setBounds((contenedor.getWidth() / 2) - 300, 170, 250, 50);
+                nombre.setBounds((contenedor2.getWidth() / 2) - 300, 170, 250, 50);
                 nombre.setFont(fuenteLabels);
                 // nombre.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(nombre);
+                contenedor2.add(nombre);
                 nombreT = new JTextField(user.getNombre());
-                nombreT.setBounds((contenedor.getWidth() / 2) + 50, 170, 350, 50);
+                nombreT.setBounds((contenedor2.getWidth() / 2) + 50, 170, 350, 50);
                 nombreT.setFont(fuenteLabels);
                 nombreT.setEnabled(false);
-                contenedor.add(nombreT);
+                contenedor2.add(nombreT);
 
                 apellidos = new JLabel("Apellidos");
-                apellidos.setBounds((contenedor.getWidth() / 2) - 300, 240, 250, 50);
+                apellidos.setBounds((contenedor2.getWidth() / 2) - 300, 240, 250, 50);
                 apellidos.setFont(fuenteLabels);
                 // apellidos.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(apellidos);
+                contenedor2.add(apellidos);
                 apellidosT = new JTextField(user.getApellidos());
-                apellidosT.setBounds((contenedor.getWidth() / 2) + 50, 240, 350, 50);
+                apellidosT.setBounds((contenedor2.getWidth() / 2) + 50, 240, 350, 50);
                 apellidosT.setFont(fuenteLabels);
                 apellidosT.setEnabled(false);
-                contenedor.add(apellidosT);
+                contenedor2.add(apellidosT);
 
                 correo = new JLabel("Correo");
-                correo.setBounds((contenedor.getWidth() / 2) - 300, 310, 250, 50);
+                correo.setBounds((contenedor2.getWidth() / 2) - 300, 310, 250, 50);
                 correo.setFont(fuenteLabels);
                 // correo.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(correo);
+                contenedor2.add(correo);
                 correoT = new JTextField(user.getCorreo());
-                correoT.setBounds((contenedor.getWidth() / 2) + 50, 310, 350, 50);
+                correoT.setBounds((contenedor2.getWidth() / 2) + 50, 310, 350, 50);
                 correoT.setFont(fuenteLabels);
                 correoT.setEnabled(false);
-                contenedor.add(correoT);
+                contenedor2.add(correoT);
 
                 dni = new JLabel("DNI");
-                dni.setBounds((contenedor.getWidth() / 2) - 300, 380, 250, 50);
+                dni.setBounds((contenedor2.getWidth() / 2) - 300, 380, 250, 50);
                 dni.setFont(fuenteLabels);
                 // dni.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(dni);
+                contenedor2.add(dni);
                 dniT = new JTextField(user.getDni());
-                dniT.setBounds((contenedor.getWidth() / 2) + 50, 380, 350, 50);
+                dniT.setBounds((contenedor2.getWidth() / 2) + 50, 380, 350, 50);
                 dniT.setFont(fuenteLabels);
                 dniT.setEnabled(false);
-                contenedor.add(dniT);
+                contenedor2.add(dniT);
 
                 contrasenia = new JLabel("Contraseña");
-                contrasenia.setBounds((contenedor.getWidth() / 2) - 300, 450, 250, 50);
+                contrasenia.setBounds((contenedor2.getWidth() / 2) - 300, 450, 250, 50);
                 contrasenia.setFont(fuenteLabels);
                 // contrasenia.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(contrasenia);
+                contenedor2.add(contrasenia);
                 contraseniaT = new JPasswordField(user.getContrasenia());
-                contraseniaT.setBounds((contenedor.getWidth() / 2) + 50, 450, 350, 50);
+                contraseniaT.setBounds((contenedor2.getWidth() / 2) + 50, 450, 350, 50);
                 contraseniaT.setFont(fuenteLabels);
                 contraseniaT.setEnabled(false);
-                contenedor.add(contraseniaT);
+                contenedor2.add(contraseniaT);
 
-                add(contenedor);
-                contenedor.repaint();
+                add(contenedor2);
+                contenedor2.repaint();
                 repaint();
             }
         };
@@ -119,6 +110,26 @@ public class venUsuario extends venGenerica {
 
     public void setUsuario(persona u) {
         this.user = u;
+    }
+
+    @Override
+    public void reSet() {
+        apodoT.setText("");
+        nombreT.setText("");
+        apellidosT.setText("");
+        correoT.setText("");
+        dniT.setText("");
+        contraseniaT.setText("");
+    }
+
+    @Override
+    public void setData() {
+        apodoT.setText(venPrincipal.Usuario.getApodo());
+        nombreT.setText(venPrincipal.Usuario.getNombre());
+        apellidosT.setText(venPrincipal.Usuario.getApellidos());
+        correoT.setText(venPrincipal.Usuario.getCorreo());
+        dniT.setText(venPrincipal.Usuario.getDni());
+        contraseniaT.setText(venPrincipal.Usuario.getContrasenia());
     }
 
 }
