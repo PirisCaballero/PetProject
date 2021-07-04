@@ -81,32 +81,6 @@ public class panelSesionIniciada extends venGenerica {
                 btnEstadisticas.setToolTipText("Usuario");
                 contenedor2.add(btnEstadisticas);
 
-                //Icon iconExit = new ImageIcon("src/main/java/com/eVida/Recursos/img/exitIcon.png");
-                Color col = Color.decode("#1660a9");
-                btnSalir = new JButton("Salir");
-                btnSalir.setBackground(col);
-                btnSalir.setForeground(Color.white);
-                btnSalir.setBounds(venPrincipal.getPanelCentral().getWidth()-400 , 700 , 100 , 40);
-                btnSalir.setFocusable(false);
-                btnSalir.setToolTipText("Salir");
-                //btnSalir.setBorder(new Border(10));
-                contenedor2.add(btnSalir);
-
-                ActionListener btnSalirL = new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        String[] opciones = { "Cerra sesion y salir", "Salir sin cerrar sesion", "Cancelar" };
-                        UIManager.put("Button.background", Color.white);
-                        int i = JOptionPane.showOptionDialog(null, "¿Como desea salir?", "Salir",
-                                JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
-                        if (i == 0) {
-                            Controller.cerrarSesion();
-                            System.exit(0);
-                        } else if (i == 1) {
-                            System.exit(0);
-                        }
-                    }
-                };
-                btnSalir.addActionListener(btnSalirL);
                 ActionListener btnAnimalesL = new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         Controller.panelSwitch("venMascotas");

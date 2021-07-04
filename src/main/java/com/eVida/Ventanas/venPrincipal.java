@@ -47,7 +47,6 @@ public class venPrincipal {
         hiloPrincipal = new Thread() {
             @Override
             public void run() {
-                System.out.println("El hilo funciona");
                 menuSuperior menu = new menuSuperior();
                 menu.setBackground(Color.white);
 

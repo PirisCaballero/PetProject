@@ -9,7 +9,7 @@ import javax.swing.*;
 import com.eVida.Ventanas.venPrincipal;
 import com.eVida.Ventanas.Controller;
 import com.eVida.Ventanas.venGenerica;
-import com.eVida.Ventanas.Lecturas.venPulso;
+import com.eVida.Ventanas.Lecturas.venGraficas;
 
 import java.awt.event.*;
 import java.io.File;

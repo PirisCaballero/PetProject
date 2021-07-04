@@ -16,7 +16,6 @@ public class venRegistro extends venGenerica {
     private JLabel apodo, nombre, apellidos, correo, dni, contrasenia;
     private JTextField apodoT, nombreT, apellidosT, correoT, dniT;
     private JPasswordField contraseniaT;
-    private JPanel contenedor = new JPanel();
     private JButton btnRegistro;
 
     public venRegistro() {
@@ -36,71 +35,66 @@ public class venRegistro extends venGenerica {
             @Override
             public void run() {
                 setTitulo("Registro de usuario");
-                contenedor = new JPanel();
-                contenedor.setBounds(0, titulo.getHeight(), venPrincipal.getPanelCentral().getWidth(),
-                        (venPrincipal.getPanelCentral().getHeight() - titulo.getHeight()));
-
-                contenedor.setLayout(null);
 
                 apodo = new JLabel("Apodo");
-                apodo.setBounds((contenedor.getWidth() / 2) - 300, 200, 250, 50);
+                apodo.setBounds((contenedor2.getWidth() / 2) - 300, 200, 250, 50);
                 apodo.setFont(fuenteLabels);
                 // apodo.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(apodo);
+                contenedor2.add(apodo);
                 apodoT = new JTextField();
-                apodoT.setBounds((contenedor.getWidth() / 2) + 50, 200, 350, 50);
+                apodoT.setBounds((contenedor2.getWidth() / 2) + 50, 200, 350, 50);
                 apodoT.setFont(fuenteLabels);
-                contenedor.add(apodoT);
+                contenedor2.add(apodoT);
 
                 nombre = new JLabel("Nombre");
-                nombre.setBounds((contenedor.getWidth() / 2) - 300, 270, 250, 50);
+                nombre.setBounds((contenedor2.getWidth() / 2) - 300, 270, 250, 50);
                 nombre.setFont(fuenteLabels);
                 // nombre.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(nombre);
+                contenedor2.add(nombre);
                 nombreT = new JTextField();
-                nombreT.setBounds((contenedor.getWidth() / 2) + 50, 270, 350, 50);
+                nombreT.setBounds((contenedor2.getWidth() / 2) + 50, 270, 350, 50);
                 nombreT.setFont(fuenteLabels);
-                contenedor.add(nombreT);
+                contenedor2.add(nombreT);
 
                 apellidos = new JLabel("Apellidos");
-                apellidos.setBounds((contenedor.getWidth() / 2) - 300, 340, 250, 50);
+                apellidos.setBounds((contenedor2.getWidth() / 2) - 300, 340, 250, 50);
                 apellidos.setFont(fuenteLabels);
                 // apellidos.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(apellidos);
+                contenedor2.add(apellidos);
                 apellidosT = new JTextField();
-                apellidosT.setBounds((contenedor.getWidth() / 2) + 50, 340, 350, 50);
+                apellidosT.setBounds((contenedor2.getWidth() / 2) + 50, 340, 350, 50);
                 apellidosT.setFont(fuenteLabels);
-                contenedor.add(apellidosT);
+                contenedor2.add(apellidosT);
 
                 correo = new JLabel("Correo");
-                correo.setBounds((contenedor.getWidth() / 2) - 300, 410, 250, 50);
+                correo.setBounds((contenedor2.getWidth() / 2) - 300, 410, 250, 50);
                 correo.setFont(fuenteLabels);
                 // correo.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(correo);
+                contenedor2.add(correo);
                 correoT = new JTextField();
-                correoT.setBounds((contenedor.getWidth() / 2) + 50, 410, 350, 50);
+                correoT.setBounds((contenedor2.getWidth() / 2) + 50, 410, 350, 50);
                 correoT.setFont(fuenteLabels);
-                contenedor.add(correoT);
+                contenedor2.add(correoT);
 
                 dni = new JLabel("DNI");
-                dni.setBounds((contenedor.getWidth() / 2) - 300, 480, 250, 50);
+                dni.setBounds((contenedor2.getWidth() / 2) - 300, 480, 250, 50);
                 dni.setFont(fuenteLabels);
                 // dni.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(dni);
+                contenedor2.add(dni);
                 dniT = new JTextField();
-                dniT.setBounds((contenedor.getWidth() / 2) + 50, 480, 350, 50);
+                dniT.setBounds((contenedor2.getWidth() / 2) + 50, 480, 350, 50);
                 dniT.setFont(fuenteLabels);
-                contenedor.add(dniT);
+                contenedor2.add(dniT);
 
                 contrasenia = new JLabel("Contraseña");
-                contrasenia.setBounds((contenedor.getWidth() / 2) - 300, 550, 250, 50);
+                contrasenia.setBounds((contenedor2.getWidth() / 2) - 300, 550, 250, 50);
                 contrasenia.setFont(fuenteLabels);
                 // contrasenia.setBorder(BorderFactory.createLineBorder(Color.green));
-                contenedor.add(contrasenia);
+                contenedor2.add(contrasenia);
                 contraseniaT = new JPasswordField();
-                contraseniaT.setBounds((contenedor.getWidth() / 2) + 50, 550, 350, 50);
+                contraseniaT.setBounds((contenedor2.getWidth() / 2) + 50, 550, 350, 50);
                 contraseniaT.setFont(fuenteLabels);
-                contenedor.add(contraseniaT);
+                contenedor2.add(contraseniaT);
 
                 btnRegistro = new JButton("Registrar");
                 btnRegistro.setBounds((venPrincipal.getPanelCentral().getWidth() / 2) - 175, 640, 250, 50);
@@ -108,7 +102,7 @@ public class venRegistro extends venGenerica {
                 btnRegistro.setFocusable(false);
                 btnRegistro.setFocusPainted(false);
                 btnRegistro.setFont(fuenteBtn);
-                contenedor.add(btnRegistro);
+                contenedor2.add(btnRegistro);
 
                 ActionListener registroL = new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -145,7 +139,7 @@ public class venRegistro extends venGenerica {
                 };
                 btnRegistro.addActionListener(registroL);
 
-                add(contenedor);
+                add(contenedor2);
                 repaint();
             }
         };

@@ -4,13 +4,14 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import com.eVida.Componentes.menuSuperior;
-
+import javax.swing.border.Border;
 import java.awt.Image.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.*;
+import java.util.ResourceBundle.Control;
 
 public class venGenerica extends JPanel {
 
@@ -44,22 +45,37 @@ public class venGenerica extends JPanel {
     public void setTitulo(String nombreTitulo) {
 
         contenedor2 = new JpanelC();
-                contenedor2.setBounds(0, 0,
-                        venPrincipal.getPanelCentral().getWidth(),
-                        venPrincipal.getPanelCentral().getHeight()+1000);
-                contenedor2.setLayout(null);
-                contenedor2.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-                contenedor2.setBackground(Color.white);
+        contenedor2.setBounds(0, 0, venPrincipal.getPanelCentral().getWidth(),
+                venPrincipal.getPanelCentral().getHeight() + 1000);
+        contenedor2.setLayout(null);
+        contenedor2.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        contenedor2.setBackground(Color.white);
 
-                Color col = Color.decode("#1660a9");
-                btnSalir = new JButton("Salir");
-                btnSalir.setBackground(col);
-                btnSalir.setForeground(Color.white);
-                btnSalir.setBounds(venPrincipal.getPanelCentral().getWidth()-400 , 700 , 100 , 40);
-                btnSalir.setFocusable(false);
-                btnSalir.setToolTipText("Salir");
-                //btnSalir.setBorder(new Border(10));
-                contenedor2.add(btnSalir);
+        Color col = Color.decode("#1660a9");
+        btnSalir = new JButton("Salir");
+        btnSalir.setBackground(col);
+        btnSalir.setForeground(Color.white);
+        btnSalir.setBounds(venPrincipal.getPanelCentral().getWidth() - 400, 700, 100, 40);
+        btnSalir.setFocusable(false);
+        btnSalir.setToolTipText("Salir");
+        //btnSalir.setBorder(new RoundedBorder(10));
+        contenedor2.add(btnSalir);
+
+        ActionListener btnSalirL = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String[] opciones = { "Cerra sesion y salir", "Salir sin cerrar sesion", "Cancelar" };
+                UIManager.put("Button.background", Color.white);
+                int i = JOptionPane.showOptionDialog(null, "¿Como desea salir?", "Salir", JOptionPane.DEFAULT_OPTION,
+                        JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+                if (i == 0) {
+                    Controller.cerrarSesion();
+                    System.exit(0);
+                } else if (i == 1) {
+                    System.exit(0);
+                }
+            }
+        };
+        btnSalir.addActionListener(btnSalirL);
 
 
         nomTit = nombreTitulo;
@@ -80,19 +96,28 @@ public class venGenerica extends JPanel {
         btnSesionIniciada.setBorder(null);
         btnSesionIniciada.setVisible(false);
 
-        Icon icon = new ImageIcon("src/main/java/com/eVida/Recursos/img/flechaDerecha.png");
-        btnAdelante = new JButton(icon);
-        btnAdelante.setBounds(venPrincipal.getPanelCentral().getWidth() - 64, 0, 64, 64);
-        btnAdelante.setBackground(Color.white);
+        btnAdelante = new JButton("--- >");
+        btnAdelante.setBounds(550, 700, 100, 40);
+        btnAdelante.setBackground(col);
+        btnAdelante.setForeground(Color.white);
         btnAdelante.setFocusable(false);
-        btnAdelante.setBorder(null);
+        btnAdelante.setToolTipText("Avanzar");
+        contenedor2.add(btnAdelante);
 
-        Icon icon2 = new ImageIcon("src/main/java/com/eVida/Recursos/img/flechaIzquierda.png");
-        btnAtras = new JButton(icon2);
-        btnAtras.setBounds(0, 0, 64, 64);
-        btnAtras.setBackground(Color.white);
+        btnAtras = new JButton("< ---");
+        btnAtras.setBounds(400, 700, 100, 40);
+        btnAtras.setBackground(col);
+        btnAtras.setForeground(Color.white);
         btnAtras.setFocusable(false);
-        btnAtras.setBorder(null);
+        btnAtras.setToolTipText("Atras");
+        contenedor2.add(btnAtras);
+
+        ActionListener btnAtrasL = new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                Controller.atras();
+            }
+        };
+        btnAtras.addActionListener(btnAtrasL);
 
         add(btnSesionIniciada);
         contenedor2.repaint();

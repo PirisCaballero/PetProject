@@ -19,7 +19,6 @@ public class venInicio extends venGenerica {
     public JTextField apodoInput;
     public JPasswordField contraseniaInput;
     public JButton btnInicio, btnRegistro;
-    public JScrollPane contenedor = new JScrollPane();
 
     public venInicio() {
         super();
@@ -29,55 +28,51 @@ public class venInicio extends venGenerica {
     private void init() {
         setName("venInicio");
         setComponentes();
-        System.out.println(contenedor.getName());
+        System.out.println(contenedor2.getName());
     }
 
     @Override
     public void setComponentes() {
         setTitulo("Bienvenido a Pet Project");
-        contenedor.setBounds(0, this.titulo.getHeight(), venPrincipal.getPanelCentral().getWidth(),
-                (venPrincipal.getPanelCentral().getHeight() - this.titulo.getHeight()));
-
-        contenedor.setLayout(null);
 
         apodo = new JLabel("Apodo");
         // apodo.setBounds(400, 200, 250, 50);
-        apodo.setBounds((contenedor.getWidth() / 2) - 300, 200, 250, 50);
+        apodo.setBounds((contenedor2.getWidth() / 2) - 300, 200, 250, 50);
         apodo.setFont(fuenteLabels);
         // apodo.setBorder(BorderFactory.createLineBorder(Color.green));
-        contenedor.add(apodo);
+        contenedor2.add(apodo);
 
         contrasenia = new JLabel("Contraseña");
         // contrasenia.setBounds(400, 300, 250, 50);
-        contrasenia.setBounds((contenedor.getWidth() / 2) - 300, 300, 250, 50);
+        contrasenia.setBounds((contenedor2.getWidth() / 2) - 300, 300, 250, 50);
         contrasenia.setFont(fuenteLabels);
         // contrasenia.setBorder(BorderFactory.createLineBorder(Color.green));
-        contenedor.add(contrasenia);
+        contenedor2.add(contrasenia);
 
         apodoInput = new JTextField();
-        apodoInput.setBounds((contenedor.getWidth() / 2) + 50, 200, 350, 50);
+        apodoInput.setBounds((contenedor2.getWidth() / 2) + 50, 200, 350, 50);
         apodoInput.setFont(fuenteLabels);
         // apodoInput.setBorder(BorderFactory.createLineBorder(Color.blue));
-        contenedor.add(apodoInput);
+        contenedor2.add(apodoInput);
 
         contraseniaInput = new JPasswordField();
-        contraseniaInput.setBounds((contenedor.getWidth() / 2) + 50, 300, 350, 50);
+        contraseniaInput.setBounds((contenedor2.getWidth() / 2) + 50, 300, 350, 50);
         // contraseniaInput.setBorder(BorderFactory.createLineBorder(Color.blue));
-        contenedor.add(contraseniaInput);
+        contenedor2.add(contraseniaInput);
 
         btnInicio = new JButton("Inicio de Sesión");
         btnInicio.setFont(fuenteBtn);
-        btnInicio.setBounds((contenedor.getWidth() / 2) - 450, 450, 400, 30);
+        btnInicio.setBounds((contenedor2.getWidth() / 2) - 450, 450, 400, 30);
         btnInicio.setBackground(Color.white);
         btnInicio.setFocusable(false);
-        contenedor.add(btnInicio);
+        contenedor2.add(btnInicio);
 
         btnRegistro = new JButton("Registro de Usuario");
         btnRegistro.setFont(fuenteBtn);
-        btnRegistro.setBounds((contenedor.getWidth() / 2) + 50, 450, 400, 30);
+        btnRegistro.setBounds((contenedor2.getWidth() / 2) + 50, 450, 400, 30);
         btnRegistro.setBackground(Color.white);
         btnRegistro.setFocusable(false);
-        contenedor.add(btnRegistro);
+        contenedor2.add(btnRegistro);
 
         Thread escuchadores = new Thread() {
             @Override
@@ -124,7 +119,7 @@ public class venInicio extends venGenerica {
         };
         escuchadores.start();
 
-        add(contenedor);
+        add(contenedor2);
         repaint();
     }
 

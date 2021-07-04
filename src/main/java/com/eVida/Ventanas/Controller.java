@@ -17,13 +17,14 @@ import javax.swing.plaf.synth.SynthScrollPaneUI;
 import com.conexion.Conexion.Cliente;
 import com.conexion.Recursos.persona;
 import com.eVida.Componentes.Paneles.panelSesionIniciada;
-import com.eVida.Ventanas.Lecturas.venPulso;
+import com.eVida.Recursos.buffer;
+import com.eVida.Ventanas.Lecturas.venGraficas;
 import com.eVida.Ventanas.Lecturas.venVerMascotas;
 
 public class Controller {
 
     private static HashMap<String, venGenerica> arrayPaneles;
-    private static venPulso vPl;
+    private static venGraficas vPl;
     private static venInicio vI;
     private static venRegistro vR;
     private static panelSesionIniciada pSI;
@@ -37,10 +38,12 @@ public class Controller {
     private static venAgregarMascota vAM;
     private static venVerMascotas vVM;
     private static ArrayList <venGenerica> paneles;
+    protected static ArrayList<String> historico;
 
     public static void init() {
         //arrayPaneles = new HashMap<String, venGenerica>();
         paneles = new ArrayList<venGenerica>();
+        historico = new ArrayList<String>();
         //vPl = new venPulso();
         //vI = new venInicio();
         //pSI = new panelSesionIniciada();
@@ -60,12 +63,13 @@ public class Controller {
     }
 
     public static void panelSwitch(String panelName) {
-        if (panelName.equals("venPulso")) {
+        if (panelName.equals("venGraficas")) {
 
             paneles.clear();
-            vPl = new venPulso();
+            vPl = new venGraficas(buffer.anim);
             System.out.println(venPrincipal.addComponent(vPl));
             paneles.add(vPl);
+            historico.add(vPl.getName());
             
         } else if (panelName.equals("venInicio")) {
 
@@ -73,6 +77,7 @@ public class Controller {
             vI = new venInicio();
             System.out.println(venPrincipal.addComponent(vI));
             paneles.add(pSI);
+            historico.add(vI.getName());
 
         } else if (panelName.equals("venSesionIniciada")) {
 
@@ -80,13 +85,15 @@ public class Controller {
             pSI = new panelSesionIniciada();
             System.out.println(venPrincipal.addComponent(pSI));
             paneles.add(pSI);
+            historico.add(pSI.getName());
 
         } else if (panelName.equals("venRegistro")) {
 
             paneles.clear();
             vR = new venRegistro();
             System.out.println(venPrincipal.addComponent(vR));
-            paneles.add(vR);        
+            paneles.add(vR);    
+            historico.add(vR.getName());    
     
         } else if (panelName.equals("venMascotas")) {
 
@@ -94,28 +101,44 @@ public class Controller {
             vM = new venMascotas();
             System.out.println(venPrincipal.addComponent(vM));
             paneles.add(vM);
+            historico.add(vM.getName());
 
         } else if (panelName.equals("venUsuario")) {
-            if (!arrayPaneles.containsKey("venUsuario")) {
-                vU = new venUsuario(venPrincipal.Usuario);
-                arrayPaneles.put(vU.getName(), vU);
-            }
-            System.out.println(venPrincipal.addComponent(arrayPaneles.get(panelName)));
+            
+            paneles.clear();
+            vU = new venUsuario(venPrincipal.Usuario);
+            System.out.println(venPrincipal.addComponent(vU));
+            paneles.add(vU);
+            historico.add(vU.getName());
+
         } else if (panelName.equals("venAgregarMascota")) {
-            if (!arrayPaneles.containsKey("venAgregarMascota")) {
-                vAM = new venAgregarMascota(venPrincipal.Usuario);
-                arrayPaneles.put(vAM.getName(), vAM);
-            }
-            System.out.println(venPrincipal.addComponent(arrayPaneles.get(panelName)));
+
+            paneles.clear();
+            vAM = new venAgregarMascota(venPrincipal.Usuario);
+            System.out.println(venPrincipal.addComponent(vAM));
+            paneles.add(vAM);
+            historico.add(vAM.getName());
+
         } else if (panelName.equals("venVerMascotas")) {
-            if (!arrayPaneles.containsKey("venVerMascotas")) {
-                vVM = new venVerMascotas(venPrincipal.Usuario);
-                arrayPaneles.put(vVM.getName(), vVM);
-            }
-            System.out.println(venPrincipal.addComponent(arrayPaneles.get(panelName)));
+            
+            paneles.clear();
+            vVM = new venVerMascotas(venPrincipal.Usuario);
+            System.out.println(venPrincipal.addComponent(vVM));
+            paneles.add(vVM);
+            historico.add(vVM.getName());
         }
     }
 
+    public static void atras(){
+        int lastPos = historico.size()-1;
+        Controller.panelSwitch(historico.get(lastPos-1));
+        historico.remove(lastPos-1);
+    }
+
+    public static void adelante(){
+
+
+    }
 
     public static boolean guardarSesion(String apodo, String contrasenia) {
         String url = "src/main/java/com/eVida/Data/" + "PetProject.txt";

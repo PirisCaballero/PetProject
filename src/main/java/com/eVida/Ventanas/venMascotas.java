@@ -9,7 +9,6 @@ import java.awt.GridLayout;
 
 public class venMascotas extends venGenerica {
 
-    protected static JPanel contenedor = new JPanel();
     protected JButton btnVerMascotas, btnAgregarMascotas;
     protected JLabel lbl1, lbl2;
     protected Thread hilo;
@@ -33,14 +32,6 @@ public class venMascotas extends venGenerica {
                 UIManager.put("ToolTip.background", Color.white);
                 UIManager.put("ToolTip.font", fuenteTT);
 
-                contenedor = new JPanel();
-                contenedor.setBounds(0, titulo.getHeight() + btnAdelante.getHeight(),
-                        venPrincipal.getPanelCentral().getWidth(),
-                        (venPrincipal.getPanelCentral().getHeight() - titulo.getHeight() - btnAdelante.getHeight()));
-                // contenedor.setLayout(new GridLayout(2, 2, 20, 20));
-                contenedor.setLayout(null);
-                contenedor.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-                // contenedor.setBackground(Color.white);
 
                 Icon iconAddPet = new ImageIcon("src/main/java/com/eVida/Recursos/img/addPet.png");
                 btnAgregarMascotas = new JButton(iconAddPet);
@@ -72,10 +63,10 @@ public class venMascotas extends venGenerica {
                 };
                 btnVerMascotas.addActionListener(btnVerMascotasL);
 
-                contenedor.add(btnAgregarMascotas);
-                contenedor.add(btnVerMascotas);
-                add(contenedor);
-                contenedor.repaint();
+                contenedor2.add(btnAgregarMascotas);
+                contenedor2.add(btnVerMascotas);
+                add(contenedor2);
+                contenedor2.repaint();
             }
         };
         actualiza.start();

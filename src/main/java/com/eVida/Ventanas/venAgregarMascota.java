@@ -4,6 +4,9 @@ import java.awt.event.*;
 
 import java.awt.*;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -14,12 +17,13 @@ import com.conexion.Recursos.persona;
 public class venAgregarMascota extends venGenerica {
 
     persona user;
-    protected JPanel contenedor = new JPanel();
     protected JLabel tipoAnimal, razaAnimal, apodo, peso, tipoSangre, fechaNacimiento;
     protected JTextField apodoT, pesoT;
     protected JTextField DD, MM, YYYY;
     protected JComboBox tipoAnimalC, tipoSangreC;
     protected JComboBox razaAnimalC = new JComboBox<String>();
+    protected JComboBox diaC , mesC , anioC;
+    protected Object[] dias;
     protected JButton enviar;
 
     public venAgregarMascota(persona u) {
@@ -41,19 +45,10 @@ public class venAgregarMascota extends venGenerica {
                 UIManager.put("ToolTip.background", Color.white);
                 UIManager.put("ToolTip.font", fuenteTT);
 
-                contenedor = new JPanel();
-                contenedor.setBounds(0, titulo.getHeight() + btnAdelante.getHeight(),
-                        venPrincipal.getPanelCentral().getWidth(),
-                        (venPrincipal.getPanelCentral().getHeight() - titulo.getHeight() - btnAdelante.getHeight()));
-                // contenedor.setLayout(new GridLayout(2, 2, 20, 20));
-                contenedor.setLayout(null);
-                contenedor.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
-                // contenedor.setBackground(Color.green);
-
                 tipoAnimal = new JLabel("Tipo de Animal");
-                tipoAnimal.setBounds(100, 100, 250, 50);
+                tipoAnimal.setBounds(300, 100, 250, 50);
                 tipoAnimal.setFont(fuenteLabels);
-                contenedor.add(tipoAnimal);
+                contenedor2.add(tipoAnimal);
 
                 try {
                     Cliente cl3 = new Cliente("1005");
@@ -69,14 +64,14 @@ public class venAgregarMascota extends venGenerica {
                 } catch (Exception e) {
                     // TODO: handle exception
                 }
-                tipoAnimalC.setBounds(400, 100, 250, 50);
-                contenedor.add(tipoAnimalC);
+                tipoAnimalC.setBounds(600, 100, 250, 50);
+                contenedor2.add(tipoAnimalC);
 
                 ///////////////////////
                 razaAnimal = new JLabel("Raza del Animal");
-                razaAnimal.setBounds(100, 200, 250, 50);
+                razaAnimal.setBounds(300, 200, 250, 50);
                 razaAnimal.setFont(fuenteLabels);
-                contenedor.add(razaAnimal);
+                contenedor2.add(razaAnimal);
 
                 if (tipoAnimalC.getSelectedItem().equals("Perro")) {
                     try {
@@ -94,39 +89,39 @@ public class venAgregarMascota extends venGenerica {
                         e.printStackTrace();
                     }
 
-                    razaAnimalC.setBounds(400, 200, 250, 50);
-                    contenedor.add(razaAnimalC);
+                    razaAnimalC.setBounds(600, 200, 250, 50);
+                    contenedor2.add(razaAnimalC);
                 } else {
                     razaAnimalC.setFont(fuenteLabels);
                     razaAnimalC.setBackground(Color.white);
                     razaAnimalC.addItem("-----");
                     razaAnimalC.setFocusable(false);
-                    razaAnimalC.setBounds(400, 200, 250, 50);
-                    contenedor.add(razaAnimalC);
+                    razaAnimalC.setBounds(600, 200, 250, 50);
+                    contenedor2.add(razaAnimalC);
                 }
 
                 apodo = new JLabel("Apodo");
-                apodo.setBounds(100, 300, 150, 50);
+                apodo.setBounds(300, 300, 150, 50);
                 apodo.setFont(fuenteLabels);
-                contenedor.add(apodo);
+                contenedor2.add(apodo);
                 apodoT = new JTextField();
-                apodoT.setBounds(400, 300, 250, 50);
+                apodoT.setBounds(600, 300, 250, 50);
                 apodoT.setFont(fuenteLabels);
-                contenedor.add(apodoT);
+                contenedor2.add(apodoT);
 
                 peso = new JLabel("Peso");
-                peso.setBounds(100, 400, 250, 50);
+                peso.setBounds(300, 400, 250, 50);
                 peso.setFont(fuenteLabels);
-                contenedor.add(peso);
+                contenedor2.add(peso);
                 pesoT = new JTextField();
-                pesoT.setBounds(400, 400, 250, 50);
+                pesoT.setBounds(600, 400, 250, 50);
                 pesoT.setFont(fuenteLabels);
-                contenedor.add(pesoT);
+                contenedor2.add(pesoT);
 
                 tipoSangre = new JLabel("Tipo de Samgre");
-                tipoSangre.setBounds(100, 500, 250, 50);
+                tipoSangre.setBounds(300, 500, 250, 50);
                 tipoSangre.setFont(fuenteLabels);
-                contenedor.add(tipoSangre);
+                contenedor2.add(tipoSangre);
                 tipoSangreC = new JComboBox<String>();
                 try {
                     Cliente cl2 = new Cliente("1006");
@@ -137,8 +132,8 @@ public class venAgregarMascota extends venGenerica {
                     }
                     tipoSangreC.setFocusable(false);
                     tipoSangreC.setBackground(Color.white);
-                    tipoSangreC.setBounds(400, 500, 250, 50);
-                    contenedor.add(tipoSangreC);
+                    tipoSangreC.setBounds(600, 500, 250, 50);
+                    contenedor2.add(tipoSangreC);
                 } catch (Exception e) {
                     // TODO: handle exception
                 }
@@ -146,39 +141,49 @@ public class venAgregarMascota extends venGenerica {
                 fechaNacimiento = new JLabel("Fecha de nacimiento");
                 fechaNacimiento.setBounds(1000, 100, 250, 50);
                 fechaNacimiento.setFont(fuenteLabels);
-                contenedor.add(fechaNacimiento);
+                contenedor2.add(fechaNacimiento);
 
-                DD = new JTextField();
-                DD.setBounds(1000, 200, 50, 50);
-                DD.setFont(fuenteLabels);
+              
+                rellenarCombos();
+                diaC.setBounds(1000 , 200 , 50 , 50);
+                diaC.setFont(fuenteLabels);
+                diaC.setFocusable(false);
+                diaC.setBackground(Color.white);
+                contenedor2.add(diaC);
+
                 JLabel barra1 = new JLabel("/");
                 barra1.setFont(fuenteLabels);
                 barra1.setBounds(1075, 212, 25, 25);
-                contenedor.add(barra1);
-                contenedor.add(DD);
-                MM = new JTextField();
-                MM.setBounds(1100, 200, 50, 50);
-                MM.setFont(fuenteLabels);
+                contenedor2.add(barra1);
+
+                mesC.setBounds(1100 , 200 , 50 , 50);
+                mesC.setFont(fuenteLabels);
+                mesC.setFocusable(false);
+                mesC.setBackground(Color.white);
+                contenedor2.add(mesC);
+
                 JLabel barra2 = new JLabel("/");
                 barra2.setFont(fuenteLabels);
                 barra2.setBounds(1175, 212, 25, 25);
-                contenedor.add(barra2);
-                contenedor.add(MM);
-                YYYY = new JTextField();
-                YYYY.setBounds(1200, 200, 100, 50);
-                YYYY.setFont(fuenteLabels);
+                contenedor2.add(barra2);
+
+                anioC.setBounds(1200 , 200 , 100 , 50);
+                anioC.setFont(fuenteLabels);
+                anioC.setFocusable(false);
+                anioC.setBackground(Color.white);
+                contenedor2.add(anioC);
+
                 JLabel barra3 = new JLabel("/");
                 barra3.setFont(fuenteLabels);
                 barra3.setBounds(1275, 212, 25, 25);
-                contenedor.add(barra3);
-                contenedor.add(YYYY);
+                contenedor2.add(barra3);
 
                 enviar = new JButton("Agregar");
                 enviar.setFont(fuenteBtn);
                 enviar.setBounds(1000, 300, 250, 50);
                 enviar.setFocusable(false);
                 enviar.setBackground(Color.white);
-                contenedor.add(enviar);
+                contenedor2.add(enviar);
 
                 ActionListener razasL = new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -199,16 +204,16 @@ public class venAgregarMascota extends venGenerica {
                                 e1.printStackTrace();
                             }
 
-                            razaAnimalC.setBounds(400, 200, 250, 50);
-                            contenedor.add(razaAnimalC);
+                            razaAnimalC.setBounds(600, 200, 250, 50);
+                            contenedor2.add(razaAnimalC);
                         } else {
                             razaAnimalC.removeAllItems();
                             razaAnimalC.setFont(fuenteLabels);
                             razaAnimalC.setBackground(Color.white);
                             razaAnimalC.addItem("-----");
                             razaAnimalC.setFocusable(false);
-                            razaAnimalC.setBounds(400, 200, 250, 50);
-                            contenedor.add(razaAnimalC);
+                            razaAnimalC.setBounds(600, 200, 250, 50);
+                            contenedor2.add(razaAnimalC);
                         }
                     }
 
@@ -237,8 +242,8 @@ public class venAgregarMascota extends venGenerica {
                 };
                 enviar.addActionListener(enviarL);
 
-                add(contenedor);
-                contenedor.repaint();
+                add(contenedor2);
+                contenedor2.repaint();
             }
         };
         actualiza.start();
@@ -246,8 +251,7 @@ public class venAgregarMascota extends venGenerica {
 
     public boolean agregarMascota() {
         animal a = new animal();
-        if (!apodoT.getText().isEmpty() && !pesoT.getText().isEmpty() && !DD.getText().isEmpty()
-                && !MM.getText().isEmpty() && !YYYY.getText().isEmpty()) {
+        if (!apodoT.getText().isEmpty() && !pesoT.getText().isEmpty()) {
             if (razaAnimalC.getSelectedIndex() > 0 && tipoAnimalC.getSelectedIndex() > 0
                     && tipoSangreC.getSelectedIndex() > 0) {
                 a.setApodo(apodoT.getText());
@@ -255,7 +259,7 @@ public class venAgregarMascota extends venGenerica {
                 a.setRaza(razaAnimalC.getSelectedItem() + "");
                 a.setPeso(pesoT.getText());
                 a.setTipoSangre(tipoSangreC.getSelectedItem() + "");
-                a.setFechaNacimiento(DD.getText() + "/" + MM.getText() + "/" + YYYY.getText());
+                a.setFechaNacimiento(diaC.getSelectedItem() + "/" + mesC.getSelectedItem() + "/" + anioC.getSelectedItem());
                 a.setIdUsuario(Integer.parseInt(venPrincipal.Usuario.getId()));
                 try {
                     Cliente cl = new Cliente("1008");
@@ -273,6 +277,29 @@ public class venAgregarMascota extends venGenerica {
         } else {
             return false;
         }
+    }
+
+    private void rellenarCombos(){
+        LocalDate currentDate = LocalDate.now();
+        YearMonth yearmonyhObject = YearMonth.of(currentDate.getYear() , currentDate.getMonthValue());
+        int numberOfDays = yearmonyhObject.lengthOfMonth();
+        ArrayList<Integer> diaas = new ArrayList<Integer>();
+        for(int i = 1 ; i<=numberOfDays ; i++){
+            diaas.add(i);
+        }
+        dias = diaas.toArray();
+        diaC = new JComboBox<Object>(dias);
+
+        Integer[] meses = {1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 10 , 11 , 12};
+        mesC = new JComboBox< Integer >(meses);
+
+        int start = 1950;
+        ArrayList<Integer> anios = new ArrayList<Integer>();
+        for(int i = yearmonyhObject.getYear() ; i>start ; i--){
+            anios.add(i);
+        }
+        anioC = new JComboBox<Object>(anios.toArray());
+        
     }
 
 }

@@ -5,6 +5,7 @@ import com.conexion.Recursos.animal;
 import com.conexion.Recursos.persona;
 import com.eVida.Ventanas.venGenerica;
 import com.eVida.Ventanas.venPrincipal;
+import com.eVida.Ventanas.venSeleccionDatos;
 import com.eVida.Ventanas.ventanaEmergente1;
 
 import java.util.List;
@@ -19,7 +20,6 @@ import java.util.Arrays;
 public class venVerMascotas extends venGenerica {
 
     protected persona user;
-    protected JPanel contenedor = new JPanel();
     protected DefaultTableModel modelo;
     protected JTable tabla;
     protected JScrollPane scroll;
@@ -48,15 +48,6 @@ public class venVerMascotas extends venGenerica {
                 UIManager.put("ToolTip.background", Color.white);
                 UIManager.put("ToolTip.font", fuenteTT);
 
-                contenedor = new JPanel();
-                contenedor.setBounds(0, titulo.getHeight() + btnAdelante.getHeight(),
-                        venPrincipal.getPanelCentral().getWidth(),
-                        (venPrincipal.getPanelCentral().getHeight() - titulo.getHeight() - btnAdelante.getHeight()));
-                // contenedor.setLayout(new GridLayout(2, 2, 20, 20));
-                contenedor.setLayout(null);
-                // contenedor.setBorder(BorderFactory.createLineBorder(Color.red));
-                contenedor.setBackground(Color.white);
-
                 modelo = new DefaultTableModel() {
                     @Override
                     public boolean isCellEditable(int row, int column) {
@@ -76,9 +67,10 @@ public class venVerMascotas extends venGenerica {
                 tabla.setSelectionBackground(Color.GRAY);
                 scroll = new JScrollPane(tabla);
 
-                scroll.setBounds(50, 20, venPrincipal.getPanelCentral().getWidth() - 200,
-                        venPrincipal.getPanelCentral().getHeight() - 500);
+                scroll.setBounds(230, 100, venPrincipal.getPanelCentral().getWidth() - 400,
+                        venPrincipal.getPanelCentral().getHeight() - 507);
 
+                scroll.setOpaque(false);
                 rellenarTabla(Integer.parseInt(venPrincipal.Usuario.getId()));
 
                 btnVerAnimal = new JButton("Ver");
@@ -87,7 +79,7 @@ public class venVerMascotas extends venGenerica {
                 btnVerAnimal.setFocusable(false);
                 btnVerAnimal.setFocusPainted(false);
                 btnVerAnimal.setBounds(scroll.getLocation().x + (scroll.getWidth() / 2) - 75, 500, 150, 50);
-                contenedor.add(btnVerAnimal);
+                contenedor2.add(btnVerAnimal);
 
                 ActionListener btnVerAnimalL = new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
@@ -99,14 +91,20 @@ public class venVerMascotas extends venGenerica {
                                     a.setIdAnimal((String) tabla.getValueAt(tabla.getSelectedRow(), 0));
                                     try {
                                         Cliente cl = new Cliente("1010");
-                                        animal mascota = cl.getAnimal(a.getIdAnimal());
-                                        ventanaEmergente1 venVer = new ventanaEmergente1(mascota);
+                                        if(tabla.getValueAt(tabla.getSelectedRow(), 0) == null ){
+                                            JOptionPane.showMessageDialog(null, "Antes debes seleccionar una fila", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
+                                        }else{
+                                            animal mascota = cl.getAnimal(a.getIdAnimal());
+                                            venSeleccionDatos vSD = new venSeleccionDatos(mascota);
+                                        }
                                     } catch (IOException e) {
                                         System.out.println(e);
                                         e.printStackTrace();
                                     }
                                 } else {
-                                    JOptionPane.showConfirmDialog(null, "Antes debes de seleccionar una fila");
+                                    JOptionPane.showMessageDialog(null, "Antes debes seleccionar una fila", "Error",
+                                        JOptionPane.ERROR_MESSAGE);
                                 }
                             }
                         };
@@ -115,9 +113,9 @@ public class venVerMascotas extends venGenerica {
                 };
                 btnVerAnimal.addActionListener(btnVerAnimalL);
 
-                contenedor.add(scroll);
-                add(contenedor);
-                contenedor.repaint();
+                contenedor2.add(scroll);
+                add(contenedor2);
+                contenedor2.repaint();
 
             }
         };
@@ -138,7 +136,12 @@ public class venVerMascotas extends venGenerica {
                 }
                 modelo.addRow(animal.toArray());
             }
-            contenedor.repaint();
+            int restantes = 9-modelo.getRowCount();
+            ArrayList<String> vacio = new ArrayList<String>();
+            for(int i = 0; i<restantes ; i++){
+                modelo.addRow(vacio.toArray());
+            }
+            contenedor2.repaint();
         } catch (IOException e) {
             System.out.println(e);
             e.printStackTrace();
