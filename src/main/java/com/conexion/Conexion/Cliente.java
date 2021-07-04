@@ -112,6 +112,7 @@ public class Cliente extends conexion {
             salidaServidor.flush();
             BufferedReader entrada = new BufferedReader(new InputStreamReader(sc.getInputStream()));
             String mensaje = entrada.readLine();
+
             mensaje = mensaje.replaceAll("\\s*", "");
             mensaje = mensaje.trim();
             String dataUsuario = mensaje;

@@ -57,6 +57,10 @@ public class Controller {
         //arrayPaneles.put(vM.getName(), vM);
         if (Controller.verificarSesionIniciada()) {
             Controller.panelSwitch("venSesionIniciada");
+            vU = new venUsuario(venPrincipal.Usuario);
+            arrayPaneles.put(vU.getName(), vU);
+            vAM = new venAgregarMascota(venPrincipal.Usuario);
+            arrayPaneles.put(vAM.getName(), vAM);
         } else {
             Controller.panelSwitch("venInicio");
         }
@@ -136,8 +140,6 @@ public class Controller {
     }
 
     public static void adelante(){
-
-
     }
 
     public static boolean guardarSesion(String apodo, String contrasenia) {

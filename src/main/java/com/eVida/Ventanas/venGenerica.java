@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Point;
 import java.awt.event.*;
+
 import java.util.ResourceBundle.Control;
 
 public class venGenerica extends JPanel {

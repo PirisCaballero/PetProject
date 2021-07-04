@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.ArrayList;
 
+
 import javax.swing.*;
 
 import com.conexion.Conexion.Cliente;
@@ -24,6 +25,7 @@ public class venAgregarMascota extends venGenerica {
     protected JComboBox razaAnimalC = new JComboBox<String>();
     protected JComboBox diaC , mesC , anioC;
     protected Object[] dias;
+
     protected JButton enviar;
 
     public venAgregarMascota(persona u) {
@@ -44,6 +46,7 @@ public class venAgregarMascota extends venGenerica {
                 setTitulo("Agregar Mascota");
                 UIManager.put("ToolTip.background", Color.white);
                 UIManager.put("ToolTip.font", fuenteTT);
+
 
                 tipoAnimal = new JLabel("Tipo de Animal");
                 tipoAnimal.setBounds(300, 100, 250, 50);
@@ -72,6 +75,7 @@ public class venAgregarMascota extends venGenerica {
                 razaAnimal.setBounds(300, 200, 250, 50);
                 razaAnimal.setFont(fuenteLabels);
                 contenedor2.add(razaAnimal);
+
 
                 if (tipoAnimalC.getSelectedItem().equals("Perro")) {
                     try {
@@ -183,6 +187,7 @@ public class venAgregarMascota extends venGenerica {
                 enviar.setBounds(1000, 300, 250, 50);
                 enviar.setFocusable(false);
                 enviar.setBackground(Color.white);
+
                 contenedor2.add(enviar);
 
                 ActionListener razasL = new ActionListener() {
@@ -212,6 +217,7 @@ public class venAgregarMascota extends venGenerica {
                             razaAnimalC.setBackground(Color.white);
                             razaAnimalC.addItem("-----");
                             razaAnimalC.setFocusable(false);
+
                             razaAnimalC.setBounds(600, 200, 250, 50);
                             contenedor2.add(razaAnimalC);
                         }
@@ -251,6 +257,7 @@ public class venAgregarMascota extends venGenerica {
 
     public boolean agregarMascota() {
         animal a = new animal();
+
         if (!apodoT.getText().isEmpty() && !pesoT.getText().isEmpty()) {
             if (razaAnimalC.getSelectedIndex() > 0 && tipoAnimalC.getSelectedIndex() > 0
                     && tipoSangreC.getSelectedIndex() > 0) {
